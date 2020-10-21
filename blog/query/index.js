@@ -18,15 +18,15 @@ app.post('/events', (req, res) => {
   }
 
   if (type === 'CommentCreated') {
-    const { id, content, postId } = data;
-    posts[postId].comments.push({ id, content, postId });
+    const { id, content, postId, status } = data;
+    posts[postId].comments.push({ id, content, postId, status });
   }
 
   return res.send({});
 });
 
 app.get('/posts', (req, res) => {
-
+  return res.send(posts)
 });
 
 app.listen(4002, () => {
