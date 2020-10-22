@@ -14,10 +14,23 @@ export default ({ postId, postComments }) => {
   // }, []);
 
   const renderedComments = postComments.map(comment => {
+    let content = '';
+    
+    switch(comment.status) {
+      case 'approved':
+        content = comment.content;
+        break;
+      case 'rejected':
+        content = 'This Comment Is Rejected';
+        break;
+      case 'pending':
+        content = 'Comment Pending Moderation';
+        break;
+    }
 
     return (
       <li key={comment.id}>
-        {comment.content}
+        {content}
       </li>
     )
   });
