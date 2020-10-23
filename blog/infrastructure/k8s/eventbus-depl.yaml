@@ -1,30 +1,30 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: posts-depl
+  name: eventbus-depl
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: posts
+      app: eventbus
   template:
     metadata:
       labels:
-        app: posts
+        app: eventbus
     spec:
       containers:
-        - name: posts
-          image: mumajid/blog-posts
+        - name: eventbus
+          image: mumajid/blog-eventbus
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: posts-clusterip-srvc
+  name: eventbus-srvc
 spec:
   selector:
-    app: posts
+    app: eventbus
   ports:
-    - name: posts
+    - name: eventbus
       protocol: TCP
-      port: 4000
-      targetPort: 4000
+      port: 4005
+      targetPort: 4005
