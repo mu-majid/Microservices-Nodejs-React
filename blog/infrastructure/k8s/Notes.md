@@ -53,3 +53,9 @@
 
     - Also used to make services visible outside a cluster
     - A more advanced option (CNAME ... )
+
+# Ingress And Ingress-Controller: 
+
+  - An Ingress is an API object that defines rules which allow external access to services in a cluster. An Ingress controller fulfills the rules set in the Ingress.
+
+  - ingress-controller is what apply routing rules, and we provide these rules via a config file having annotation (kubernetes.io/ingress.class: nginx)
