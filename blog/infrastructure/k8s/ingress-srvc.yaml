@@ -13,3 +13,18 @@ spec:
             backend:
               serviceName: posts-clusterip-srvc
               servicePort: 4000
+
+          - path: /posts
+            backend:
+              serviceName: query-srvc
+              servicePort: 4002
+
+          - path: /posts/?(.*)/comments
+            backend:
+              serviceName: comments-srvc
+              servicePort: 4001
+              
+          - path: /?(.*)
+            backend:
+              serviceName: client-srvc
+              servicePort: 3000
