@@ -14,9 +14,9 @@ app.post('/events', (req, res) => {
 
   // assuming these services never go down (not handling service failure)
   axios.post('http://posts-clusterip-srvc:4000/events', event);
-  // axios.post('http://localhost:4001/events', event);
-  // axios.post('http://localhost:4002/events', event);
-  // axios.post('http://localhost:4003/events', event);
+  axios.post('http://comments-srvc:4001/events', event);
+  axios.post('http://query-srvc:4002/events', event);
+  axios.post('http://moderation-srvc:4003/events', event);
 
 
   return res.send({ status: 'OK' });

@@ -47,7 +47,8 @@
 
     - Like Nodeport Service, used to make pods accessiblr from outside the cluster.
     - Used in Production.
-
+    - When we create a loadBalancer Service, k8s requests the provider (AWS, Azure, ...) to provision a load balancer instance (This is outside our cluster).
+    - Gives Accss to one Pod.
   ## External Name Services:
 
     - Also used to make services visible outside a cluster
