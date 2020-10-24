@@ -31,7 +31,7 @@ app.post('/events', (req, res) => {
 
   const { type, data } = req.body;
   console.log ('Event : ', type);
-  
+
   handleEvent(type, data);
 
   return res.send({});
@@ -44,7 +44,7 @@ app.get('/posts', (req, res) => {
 app.listen(4002, async () => {
   console.log('Query Service up and running on 4002');
 
-  const { data } = await axios.get('http://localhost:4005/events');
+  const { data } = await axios.get('http://eventbus-srvc:4005/events');
 
   for (const event of data) {
     handleEvent(event.type, event.data);
