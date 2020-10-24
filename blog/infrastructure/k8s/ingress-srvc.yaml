@@ -9,7 +9,7 @@ spec:
     - host: posts.com
       http:
         paths:
-          - path: /posts
+          - path: /posts/create
             backend:
               serviceName: posts-clusterip-srvc
               servicePort: 4000
