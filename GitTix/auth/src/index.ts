@@ -6,5 +6,6 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded());
 
 app.listen(3000, () => {
-  console.log('Auth Server Running On 3000!!!');
+  console.log()
+  console.log('Auth Server Running On 3000!!');
 });
