@@ -5,10 +5,12 @@ deploy:
     manifests:
       - ./infra/k8s/*
 build:
-  local:
-    push: false
+  # local:
+  #   push: false
+  googleCloudBuild:
+    projectId: gittix-dev-293814
   artifacts:
-    - image: mumajid/gittix-auth
+    - image: us.go.io/gittix-dev-293814/auth
       context: auth
       docker:
         dockerfile: Dockerfile
