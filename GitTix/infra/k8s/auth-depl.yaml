@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: auth
-          image: us.go.io/gittix-dev-293814/auth
+          image: gcr.io/gittix-dev-293814/auth
 ---
 apiVersion: v1
 kind: Service

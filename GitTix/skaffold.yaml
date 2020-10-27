@@ -10,7 +10,7 @@ build:
   googleCloudBuild:
     projectId: gittix-dev-293814
   artifacts:
-    - image: us.go.io/gittix-dev-293814/auth
+    - image: gcr.io/gittix-dev-293814/auth
       context: auth
       docker:
         dockerfile: Dockerfile
