@@ -41,3 +41,19 @@ This is a microservices application that uses `Async` communication between serv
   Also, for the event bus server, we are going to use `NATS`.
 
   ![OverView](./pics/OverviewDiagram.png)
+
+## Kubernetes Cluster Config: 
+
+  - We are going to use google cloud platform to deploy our cluster, also we'll use `skaffold` to handle all the syncing and building images by connecting it to `google cloud builder`
+
+  - right now `kubectl` is now connected to our local cluster created by `minikube`, so we need to create another context that tells `kubectl` how to connect to the cluster we created on `gcp`.
+
+  - To create a context for `kubectl`, we can use GCP UI or use [google-cloud-sdk](https://cloud.google.com/sdk). i will use the sdk : 
+    - Step1: Download and install the SDK
+    - Step2: run `gcloud auth login`, and login with your gcp account.
+    - Step3: run `gcloud init` and configure the project containing the cluster (should be created from gcp ui)
+    - Step4: run `gcloud container clusters get-credentials CLUSTER_NAME_ON_UI`, and this will create a context entry in kubectl config for the cluster we created on gcp.
+    - Step5: check that cluster entry was added to local `kubectl` config by running `kubectl config view`
+    - Step6: switch between different contexts using this command `kubectl config use-context CONTEXT_NAME`
+
+  
