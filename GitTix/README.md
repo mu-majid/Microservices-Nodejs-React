@@ -56,4 +56,15 @@ This is a microservices application that uses `Async` communication between serv
     - Step5: check that cluster entry was added to local `kubectl` config by running `kubectl config view`
     - Step6: switch between different contexts using this command `kubectl config use-context CONTEXT_NAME`
 
-  
+## Password hashing Reminder : 
+  - When a user tries to signup, hash password and save it to db.
+  - When a user tries to sign in, we retrieve hashed password from db and match it to password he provided. 
+
+## Is user Logged In (Microservices Architecture): 
+
+  - How would we know if a user is authenticated in a microservices architecture? 
+
+
+      - Approach 1.0 : services Sync with auth service (inspect JWT/Cookie in the auth service) - If Auth goes down, all service are down (the request will be like request ==> orders service ==> auth service)
+      - Approach 1.1 : Auth service here acts as a gateway and all our requests has to pass through it. (the request will be like request ==> Auth service ==> orders service)
+      - Approach 2.0 : Each service should be able to inspect the cookie or the JWT on its own. (No dependency on outer services.)

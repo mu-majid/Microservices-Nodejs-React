@@ -1,23 +1,6 @@
 import mongoose from 'mongoose';
-
-// describe creating new user
-interface INewUser {
-  email: string;
-  password: string;
-}
-
-// describes properties on user document (getUser)
-interface IUserDoc extends mongoose.Document {
-  email: string;
-  password: string;
-  // createdAt: string;
-  // updatedAt: string;
-}
-
-// describes properties on User model
-interface IUserModelProps extends mongoose.Model<IUserDoc> {
-  build(user: INewUser): IUserDoc;
-}
+import { INewUser, IUserDoc, IUserModelProps } from './interfaces';
+import { Password } from '../services/password';
 
 const userSchema = new mongoose.Schema({
   email: {
@@ -28,6 +11,15 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true
   }
+});
+
+userSchema.pre('save', async function(done) {
+  // only hash the passwrd if it was modified
+  if (this.isModified('password')) {
+    const hashed = await Password.toHash(this.get('password'));
+    this.set('password', hashed);
+  }
+  done();
 });
 
 userSchema.statics.build = (user: INewUser) => {
