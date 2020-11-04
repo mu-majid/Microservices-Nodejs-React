@@ -67,4 +67,14 @@ This is a microservices application that uses `Async` communication between serv
 
       - Approach 1.0 : services Sync with auth service (inspect JWT/Cookie in the auth service) - If Auth goes down, all service are down (the request will be like request ==> orders service ==> auth service)
       - Approach 1.1 : Auth service here acts as a gateway and all our requests has to pass through it. (the request will be like request ==> Auth service ==> orders service)
-      - Approach 2.0 : Each service should be able to inspect the cookie or the JWT on its own. (No dependency on outer services.)
+      - Approach 2.0 : Each service should be able to inspect the cookie or the JWT on its own. (No dependency on outer services.) but this has a downside, that we now don't see authorization (if user was banned in auth service).
+      - We will implement approach 2 for the sake of separation between services
+      - Solution to Approach 2.0 downside : always add expiration on cookies and jwt issued by auth service, when request comes to other services (handling auth logic by itself) and see that the jwt has expired then call auth srv for refresh token refresh or we could reject request with expired token.
+      - What if the user is banned but the token is still active ? user/auth service should emit an event telling all services that a user is banned.(cached in mem for ex)
+
+      
+  - Browser handle cookie expiration, and a user could copy its content and use it. But JWT encode expiration in itself.
+  - JWT is supported in all languages with official implementation, but cookies are not.
+  - Cookies may require some backing datastores (for sessionID) but this is not required.
+  - Remember Cookie is just a Transport mechanism that may be used for auth (we could use cookie and transport jwt via it).
+  - Since we are implementing SSR React App, we will use cookies for transporting JWT (think about the first request you issue to the server, and you want to include some data in it (service workers with nextjs is a workaround if cookies are not prefered))
