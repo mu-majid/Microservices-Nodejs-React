@@ -1,7 +1,7 @@
 {
   "name": "auth",
   "version": "1.0.0",
-  "description": "",
+  "description": "Auth Service for the Microservices Arch",
   "main": "index.js",
   "scripts": {
     "start": "ts-node-dev --poll src/index.ts"
