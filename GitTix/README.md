@@ -64,7 +64,6 @@ This is a microservices application that uses `Async` communication between serv
 
   - How would we know if a user is authenticated in a microservices architecture? 
 
-
       - Approach 1.0 : services Sync with auth service (inspect JWT/Cookie in the auth service) - If Auth goes down, all service are down (the request will be like request ==> orders service ==> auth service)
       - Approach 1.1 : Auth service here acts as a gateway and all our requests has to pass through it. (the request will be like request ==> Auth service ==> orders service)
       - Approach 2.0 : Each service should be able to inspect the cookie or the JWT on its own. (No dependency on outer services.) but this has a downside, that we now don't see authorization (if user was banned in auth service).
