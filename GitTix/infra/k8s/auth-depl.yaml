@@ -15,6 +15,12 @@ spec:
       containers:
         - name: auth
           image: gcr.io/gittix-dev-293814/auth
+          env:
+            - name: JWT_KEY
+              valueFrom: 
+                scretKeyRef: 
+                  name: jwt-secret
+                  key: JWT_KEY
 ---
 apiVersion: v1
 kind: Service

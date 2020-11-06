@@ -77,3 +77,5 @@ This is a microservices application that uses `Async` communication between serv
   - Cookies may require some backing datastores (for sessionID) but this is not required.
   - Remember Cookie is just a Transport mechanism that may be used for auth (we could use cookie and transport jwt via it).
   - Since we are implementing SSR React App, we will use cookies for transporting JWT (think about the first request you issue to the server, and you want to include some data in it (service workers with nextjs is a workaround if cookies are not prefered))
+
+
