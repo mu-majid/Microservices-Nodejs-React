@@ -11,6 +11,7 @@ import { errorHandler } from './middlewares/error-handler';
 import { NotFoundError } from './errors/not-found-error';
 import mongoose from 'mongoose';
 
+// cookie here is for transporting jwt
 const app = express();
 app.set('trust proxy', true); // to trust https traffic from a proxy (ingress)
 app.use(json());
