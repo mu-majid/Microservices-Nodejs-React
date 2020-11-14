@@ -72,6 +72,8 @@ This is a microservices application that uses `Async` communication between serv
       - What if the user is banned but the token is still active ? user/auth service should emit an event telling all services that a user is banned.(cached in mem for ex)
 
       
+  Sometimes with each each request we could ask for user permission from auth server (if that was a requirement)
+
   - Browser handle cookie expiration, and a user could copy its content and use it. But JWT encode expiration in itself.
   - JWT is supported in all languages with official implementation, but cookies are not.
   - Cookies may require some backing datastores (for sessionID) but this is not required.
