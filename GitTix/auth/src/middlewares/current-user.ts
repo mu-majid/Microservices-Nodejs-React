@@ -1,16 +1,15 @@
 import { Request, Response, NextFunction } from 'express';
 import jwt from 'jsonwebtoken';
 
-interface IUserPayload {
+interface UserPayload {
   id: string;
-  email: string
+  email: string;
 }
 
-// Adding additional property to express request object
 declare global {
   namespace Express {
     interface Request {
-      currentUser?: IUserPayload
+      currentUser?: UserPayload;
     }
   }
 }
@@ -21,16 +20,16 @@ export const currentUser = (
   next: NextFunction
 ) => {
   if (!req.session?.jwt) {
-    return  next();
+    return next();
   }
 
   try {
-    const payload = jwt.verify(req.session.jwt, process.env.JWT_KEY!) as IUserPayload;
+    const payload = jwt.verify(
+      req.session.jwt,
+      process.env.JWT_KEY!
+    ) as UserPayload;
     req.currentUser = payload;
-  }
-  catch (error) {
-    console.log('ERROR : Error Occured in currentUser Middleware while decoding JWT.')
-  }
+  } catch (err) {}
 
   next();
-}
+};

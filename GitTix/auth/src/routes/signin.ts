@@ -39,7 +39,6 @@ router.post('/api/users/signin',
       jwt: userJWT
     };
 
-
     return res.status(200).send(existingUser);
   });
 
