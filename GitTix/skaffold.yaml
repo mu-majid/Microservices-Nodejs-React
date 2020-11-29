@@ -18,3 +18,12 @@ build:
         manual:
           - src: 'src/**/*.ts'
             dest: .
+
+    - image: gcr.io/gittix-dev-293814/client
+      context: client
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: '**/*.js'
+            dest: .
