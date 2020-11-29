@@ -17,7 +17,7 @@ app.set('trust proxy', true); // to trust https traffic from a proxy (ingress)
 app.use(json());
 app.use(cookieSession({
   signed: false,
-  secure: true // only https connections are allowed
+  secure: process.env.NODE_ENV !== 'test' // only https connections are allowed in prod and dev
 }))
 
 app.use(currentUserRouter);
