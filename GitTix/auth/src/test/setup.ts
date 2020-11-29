@@ -3,6 +3,9 @@ import mongoose from 'mongoose';
 import request from 'supertest';
 import { app } from '../app';
 
+// no particular reason for being global
+// just to avoid writing multiple imports in test files
+// could be a function in a util file
 declare global {
   namespace NodeJS {
     interface Global {
@@ -13,6 +16,9 @@ declare global {
 
 let mongo: any;
 beforeAll(async () => {
+  process.env.JWT_KEY = 'asdasdf';
+  process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
+  
   mongo = new MongoMemoryServer();
   const mongoURI = await mongo.getUri();
 
