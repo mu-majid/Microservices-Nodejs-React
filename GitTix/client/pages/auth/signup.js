@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import Router from 'next/router';
 import useRequest from '../../hooks/use-request';
 
 export default () => {
@@ -7,7 +8,8 @@ export default () => {
   const { doRequest, errors } = useRequest({
     url: '/api/users/sugnup',
     method: 'post',
-    body: { email, password }
+    body: { email, password },
+    onSuccess: () => Router.push('/')
   });
 
   const onSubmit = async (event) => {
