@@ -86,3 +86,5 @@ This is a microservices application that uses `Async` communication between serv
   - We are using `Next.JS` for SSR, It is convenient for SEO optimization and also saving up multiple requests (script tags in normal react app), and also better for mobile app.
 
   - `Next.JS` does not use `Reacr Router`, instead it rely on a folder called `pages`, and each file inside this folder maps to a route.
+
+  - `getInitialsProps` is a special function used by nextjs to fetch data before rendering a component. Executed on the server.
