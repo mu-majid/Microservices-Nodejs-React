@@ -91,4 +91,8 @@ This is a microservices application that uses `Async` communication between serv
 
   - REMINDER: in k8s, all services in the same namespace can communicate with each other via cluster ip service, if they lie in different namesapces, we should use a domain like this `http://NAMESPACE.SERVICENAME.svc.cluster.local`
 
-  - External Name Service could be used to map a url mentioned above to a more simpler one
+  - External Name Service could be used to map a url mentioned above to a more simpler one.
+
+  - `getInitialProps` executed on server: 1. Hard Refresh, 2.Clicking link from different domain, 3.Typing URL in address bar.
+  - `getInitialProps` executed in browser: navigating to other page in same app.
+  - This means when we make a request inside getInitialProps we must pay attention to whether it will be executed on server /client
