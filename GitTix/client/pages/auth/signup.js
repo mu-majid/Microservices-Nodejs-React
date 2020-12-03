@@ -33,5 +33,6 @@ export default () => {
       {errors}
       <button className="btn btn-primary" >Sign Up</button>
     </form>
+    
   );
 }
