@@ -88,3 +88,7 @@ This is a microservices application that uses `Async` communication between serv
   - `Next.JS` does not use `Reacr Router`, instead it rely on a folder called `pages`, and each file inside this folder maps to a route.
 
   - `getInitialsProps` is a special function used by nextjs to fetch data before rendering a component. Executed on the server.
+
+  - REMINDER: in k8s, all services in the same namespace can communicate with each other via cluster ip service, if they lie in different namesapces, we should use a domain like this `http://NAMESPACE.SERVICENAME.svc.cluster.local`
+
+  - External Name Service could be used to map a url mentioned above to a more simpler one
