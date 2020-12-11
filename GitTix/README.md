@@ -96,3 +96,4 @@ This is a microservices application that uses `Async` communication between serv
   - `getInitialProps` executed on server: 1. Hard Refresh, 2.Clicking link from different domain, 3.Typing URL in address bar.
   - `getInitialProps` executed in browser: navigating to other page in same app.
   - This means when we make a request inside getInitialProps we must pay attention to whether it will be executed on server /client
+  - Remember, GetInitialsProps arguments are different when used with PageComponent and a CustomApp Component
