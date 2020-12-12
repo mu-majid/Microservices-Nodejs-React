@@ -7,8 +7,12 @@ const start  = async () => {
     throw new Error('JWT_KEY env should be defined');
   }
 
+  if (!process.env.MONGO_URI) {
+    throw new Error('MONGO_URI env should be defined');
+  }
+
   try {
-    await mongoose.connect('mongodb://auth-mongo-srv:27017/tickets-auth', {
+    await mongoose.connect(process.env.MONGO_URI, {
       useCreateIndex: true,
       useUnifiedTopology: true,
       useNewUrlParser: true

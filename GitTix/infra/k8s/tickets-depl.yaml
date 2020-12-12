@@ -1,3 +1,4 @@
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: tickets-depl
@@ -15,6 +16,9 @@ spec:
         - name: tickets
           image: gcr.io/gittix-dev-293814/tickets
           env:
+            - name: MONGO_URI
+              value: mongodb://tickets-mongo-srv:27017/tickets
+
             - name: JWT_KEY
               valueFrom: 
                 secretKeyRef: 
