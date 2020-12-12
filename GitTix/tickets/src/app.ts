@@ -2,7 +2,8 @@ import express from 'express';
 import 'express-async-errors';
 import { json } from 'body-parser';
 import cookieSession from 'cookie-session';
-import { errorHandler, NotFoundError } from '@mmkgittix/common';
+import { errorHandler, NotFoundError, currentUser } from '@mmkgittix/common';
+import { createTicketsRouter } from './routes/new';
 
 // cookie here is for transporting jwt
 const app = express();
@@ -11,7 +12,11 @@ app.use(json());
 app.use(cookieSession({
   signed: false,
   secure: process.env.NODE_ENV !== 'test' // only https connections are allowed in prod and dev
-}))
+}));
+
+app.use(currentUser);
+
+app.use(createTicketsRouter);
 
 
 app.all('*', async () => {
