@@ -27,3 +27,12 @@ build:
         manual:
           - src: '**/*.js'
             dest: .
+
+    - image: gcr.io/gittix-dev-293814/tickets
+      context: tickets
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: 'src/**/*.ts'
+            dest: .
