@@ -1,10 +1,12 @@
 import request from 'supertest';
 import { app } from '../../app';
 import { Ticket } from '../../models/ticket';
+import mongoose from 'mongoose';
 
 it('Should return 404 if ticket not found', async () => {
   await request(app)
-    .get('/api/tickets/notfound')
+    .get(`/api/tickets/${mongoose.Types.ObjectId()}`)
+    .set('Cookie', global.signin())
     .send()
     .expect(404)
 });
@@ -25,6 +27,7 @@ it('Should return the ticket if found', async () => {
 
   const res = await request(app)
     .get(`/api/tickets/${body.id}`)
+    .set('Cookie', global.signin())
     .send()
     .expect(200);
 

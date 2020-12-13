@@ -4,6 +4,7 @@ import { json } from 'body-parser';
 import cookieSession from 'cookie-session';
 import { errorHandler, NotFoundError, currentUser } from '@mmkgittix/common';
 import { createTicketsRouter } from './routes/new';
+import { showTicketRouter } from './routes/find-one';
 
 // cookie here is for transporting jwt
 const app = express();
@@ -17,6 +18,7 @@ app.use(cookieSession({
 app.use(currentUser);
 
 app.use(createTicketsRouter);
+app.use(showTicketRouter);
 
 
 app.all('*', async () => {
