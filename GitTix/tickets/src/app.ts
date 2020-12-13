@@ -5,6 +5,7 @@ import cookieSession from 'cookie-session';
 import { errorHandler, NotFoundError, currentUser } from '@mmkgittix/common';
 import { createTicketsRouter } from './routes/new';
 import { showTicketRouter } from './routes/find-one';
+import { indexTicketRouter } from './routes/find-all';
 
 // cookie here is for transporting jwt
 const app = express();
@@ -19,6 +20,7 @@ app.use(currentUser);
 
 app.use(createTicketsRouter);
 app.use(showTicketRouter);
+app.use(indexTicketRouter);
 
 
 app.all('*', async () => {
