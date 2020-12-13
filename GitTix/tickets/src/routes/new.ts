@@ -1,6 +1,7 @@
 import express, { Request, Response } from 'express';
 import { requireAuth, validateRequest } from '@mmkgittix/common';
 import { body } from 'express-validator';
+import { Ticket } from '../models/ticket';
 
 const router = express.Router();
 
@@ -15,9 +16,16 @@ router.post(
   ],
   validateRequest,
   async (req: Request, res: Response) => {
+    const { title, price } = req.body;
+    const ticket = Ticket.build({
+      price,
+      title,
+      userId: req.currentUser!.id
+    });
+    await ticket.save();
 
-    return res.sendStatus(200);
+    return res.status(201).send(ticket);
   }
 );
 
-export { router as createTicketsRouter }
+export { router as createTicketsRouter };
