@@ -19,7 +19,7 @@ let mongo: any;
 beforeAll(async () => {
   process.env.JWT_KEY = 'asdasdf';
   process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
-  
+
   mongo = new MongoMemoryServer();
   const mongoURI = await mongo.getUri();
 
@@ -44,7 +44,7 @@ afterAll(async () => {
 
 global.signin = () => {
   // build a jwt payload { id, email }
-  const payload = { id: 'id', email: 'test@test.com' }
+  const payload = { id: new mongoose.Types.ObjectId().toHexString(), email: 'test@test.com' }
 
   // create jwt
   const token = jwt.sign(payload, process.env.JWT_KEY!);
