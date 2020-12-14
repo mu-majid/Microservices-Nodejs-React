@@ -26,7 +26,7 @@ const start  = async () => {
   }
 
   app.listen(3000, () => {
-    console.log('Auth Server on port 3000!!!');
+    console.log('Tickets Server on port 3000!!!');
   });
 }
 
