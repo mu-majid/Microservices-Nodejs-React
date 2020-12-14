@@ -97,3 +97,11 @@ This is a microservices application that uses `Async` communication between serv
   - `getInitialProps` executed in browser: navigating to other page in same app.
   - This means when we make a request inside getInitialProps we must pay attention to whether it will be executed on server /client
   - Remember, GetInitialsProps arguments are different when used with PageComponent and a CustomApp Component
+
+## NATS Streaming Server: 
+
+  - docs.nats.io is the documentation for what we are going to use.
+
+  - **Important Note**: `NATS` and `NATS Streaming Server` are two different things, NATS streaming server is built on top of NATS and gives some advanced functionality related to event sharing.
+
+  - We are going to use the official `nats-streaming` image from docker hub
