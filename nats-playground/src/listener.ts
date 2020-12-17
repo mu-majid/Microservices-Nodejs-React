@@ -12,6 +12,11 @@ const client = nats.connect('gittix', uniqueClientId, {
 client.on('connect', () => {
   console.log('Listener connected To NATS');
 
+  client.on('close', () => {
+    console.log('NATS connection closed!');
+    process.exit();
+  });
+
   const subOpts = client.subscriptionOptions()
     .setManualAckMode(true)
 
@@ -28,3 +33,6 @@ client.on('connect', () => {
     msg.ack();
   });
 });
+
+process.on('SIGINT', () => client.close());
+process.on('SIGTERM', () => client.close());
