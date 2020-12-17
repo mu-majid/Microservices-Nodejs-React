@@ -104,4 +104,14 @@ This is a microservices application that uses `Async` communication between serv
 
   - **Important Note**: `NATS` and `NATS Streaming Server` are two different things, NATS streaming server is built on top of NATS and gives some advanced functionality related to event sharing.
 
-  - We are going to use the official `nats-streaming` image from docker hub
+  - We are going to use the official `nats-streaming` image from docker hub.
+
+  - Only raw data could be shared accross nats, so when sharing object, we should stringify it.
+
+  - Nats server keeps record of each client connected to the server.
+
+  - `Queue groups` are something that are created inside a `channel` (topic), and are used to deliver event/msg to only one member of the group (subscribers), so essentially what it does is prevent event from being processed by multiple subscribers of the same type(same logic). Also, if any other listener that is not in any QueueGroup, will recieve the event as well.
+
+  - By default, when an event is recieved by the subscription, it will be marked as processed.
+
+  - If manualAckMode is set to true, and the subscriber did not ack the event, the event will be sent back to nats server, and then sent to another(or same) instance in the queueGroup
