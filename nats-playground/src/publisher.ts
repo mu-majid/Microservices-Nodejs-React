@@ -1,4 +1,5 @@
 import nats from 'node-nats-streaming';
+import { TicketCreatedPublisher } from './events/ticket-created-publisher';
 
 
 console.clear();
@@ -17,7 +18,5 @@ client.on('connect', () => {
     price: 12
   };
 
-  client.publish('ticket:created', JSON.stringify(data), () => {
-    console.log('event published..')
-  })
+  new TicketCreatedPublisher(client).publish(data);
 });
