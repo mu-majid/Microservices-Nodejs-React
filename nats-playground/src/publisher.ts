@@ -9,7 +9,7 @@ const client = nats.connect('gittix', 'abc', {
   url: 'http://localhost:4222'
 });
 
-client.on('connect', () => {
+client.on('connect', async () => {
   console.log('PUB: connected to nats');
 
   const data = {
@@ -18,5 +18,10 @@ client.on('connect', () => {
     price: 12
   };
 
-  new TicketCreatedPublisher(client).publish(data);
+  try {
+    await new TicketCreatedPublisher(client).publish(data);
+  }
+  catch (error) {
+    console.log('handle error publishing ', error)
+  }
 });
