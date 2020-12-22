@@ -122,13 +122,13 @@ This is a microservices application that uses `Async` communication between serv
 
   ### Common Concurrency Issues:
 
-    - 1. If a service fails to process event, and other events are processed on other services instances, this means events are processed out of order, which could be unacceptable depending on the business case.
+    1. If a service fails to process event, and other events are processed on other services instances, this means events are processed out of order, which could be unacceptable depending on the business case.
 
-    - 2. Maybe one listener(service) runs more quickly than another. Causing some events being processed out of order.
+    2. Maybe one listener(service) runs more quickly than another. Causing some events being processed out of order.
 
-    - 3. Depending on hearbeat settings (and the service being shut unGracefully), NATS might think a dead service to be alive and send it an event to be processed, causing this event to be delayed.
+    3. Depending on hearbeat settings (and the service being shut unGracefully), NATS might think a dead service to be alive and send it an event to be processed, causing this event to be delayed.
 
-    - 4. Race condition may occur caused by an event being processed twice. This could occur if one listener is very slow and is about to finish in 29.999s (NATS consider event as failed after 30s and did not recieve ack from service). So after 1ms NATS consider the event as failed and send it to be processed again, while the first service is still (probably finished processing) processing the event.
+    4. Race condition may occur caused by an event being processed twice. This could occur if one listener is very slow and is about to finish in 29.999s (NATS consider event as failed after 30s and did not recieve ack from service). So after 1ms NATS consider the event as failed and send it to be processed again, while the first service is still (probably finished processing) processing the event.
 
     #### Common Questions: 
 
