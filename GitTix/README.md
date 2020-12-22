@@ -176,3 +176,12 @@ This is a microservices application that uses `Async` communication between serv
   - Using queueGroups, will make sure that if a client is disconnected, NATS will not delete the subscribtion
 
 
+## Common Module Note: 
+
+  - We have written a common module (npm package) that includes all errors and common middlewares and also all the events that the services communicate with. But this solution is only feasible if all the services are written in typescript.
+
+  - if we have a polygot architecture (using different languages i different services) and want to enforce something like events structure, we could use: 
+
+    - JSON schema.
+    - Protobuf.
+    - Apache Avro
