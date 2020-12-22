@@ -168,6 +168,7 @@ This is a microservices application that uses `Async` communication between serv
   - All events are saved by NATS in an event-history.
   - We can replay all events when a subscription is created by manipulating the subOpts obj. or only run lastDelivered.
 
+
 ## Durable Subscribtion:
 
   - Is created when we create a subscribtion with `setDurableName` on the subOpts object.
