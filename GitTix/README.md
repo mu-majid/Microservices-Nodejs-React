@@ -163,15 +163,15 @@ This is a microservices application that uses `Async` communication between serv
 
       [[sol1 pic, and sol2 pic]]
   
-  ## Event Re-Delivery:
+## Event Re-Delivery:
 
-    - All events are saved by NATS in an event-history.
-    - We can replay all events when a subscription is created by manipulating the subOpts obj. or only run lastDelivered.
+  - All events are saved by NATS in an event-history.
+  - We can replay all events when a subscription is created by manipulating the subOpts obj. or only run lastDelivered.
 
-  ## Durable Subscribtion:
+## Durable Subscribtion:
 
-    - Is created when we create a subscribtion with `setDurableName` on the subOpts object.
-    - It means that a subscribtion has recieved and processed an event successfully. So if the service goes down, NATS will send only the events that subscribtion has missed out during its time down.(when used with `setDeliverAllAvail`).
-    - Using queueGroups, will make sure that if a client is disconnected, NATS will not delete the subscribtion
+  - Is created when we create a subscribtion with `setDurableName` on the subOpts object.
+  - It means that a subscribtion has recieved and processed an event successfully. So if the service goes down, NATS will send only the events that subscribtion has missed out during its time down.(when used with `setDeliverAllAvail`).
+  - Using queueGroups, will make sure that if a client is disconnected, NATS will not delete the subscribtion
 
 
