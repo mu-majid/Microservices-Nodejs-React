@@ -1,5 +1,18 @@
 # GitTix (A Simple StubHub Clone): 
 
+## Enhancements:
+
+  - Instead of publishing event from services to NATS streaming directly, We should save the event in the db instance connected to the service, and then we could have something like a watcher (cronjob) that checks new events (with flag notPublished) in the service db and publish them to NATS.
+
+  - For example:
+  
+    - Create a ticket scenario: 
+    
+    1. Create ticket object & event object in service DB [THIS SHOULD BE A DB TRANSACTION].
+    2. Cronjob (watcher) polling the service's db for newly created events to publish them to NATS.
+
+  - This eliminates data integrity issues that might arise if we created ticket object but failed to publish event for whatever reason. 
+
 ## DB Resources : 
 
   - Tickets
