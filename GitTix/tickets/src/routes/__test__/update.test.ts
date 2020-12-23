@@ -1,7 +1,6 @@
 import request from 'supertest';
 import { app } from '../../app';
 import mongoose from 'mongoose';
-jest.mock('../../nats-wrapper');
 
 
 it('returns a 404 if the provided id does not exist', async () => {
@@ -98,8 +97,10 @@ it('updates the ticket provided valid inputs', async () => {
 
   const ticketResponse = await request(app)
     .get(`/api/tickets/${response.body.id}`)
+    .set('Cookie', cookie)
     .send();
 
+  console.log(ticketResponse.body)
   expect(ticketResponse.body.title).toEqual('new title');
   expect(ticketResponse.body.price).toEqual(100);
 });
