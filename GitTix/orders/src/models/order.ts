@@ -1,10 +1,13 @@
 import mongoose from 'mongoose';
 import { INewOrder, IOrderDoc, IOrderModelProps } from './interfaces';
+import { OrderStatus } from '@mmkgittix/common';
 
 const orderSchema = new mongoose.Schema({
   status: {
     type: String,
-    required: true
+    required: true,
+    enum: Object.values(OrderStatus),
+    default: OrderStatus.CREATED
   },
   expiresAt: {
     type: mongoose.Schema.Types.Date,

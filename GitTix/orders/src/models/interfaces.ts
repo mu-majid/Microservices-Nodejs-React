@@ -1,8 +1,9 @@
 import mongoose from 'mongoose';
-
+import { OrderStatus } from '@mmkgittix/common';
+ 
 // describe creating new order
 export interface INewOrder {
-  status: string;
+  status: OrderStatus;
   expiresAt: Date;
   userId: string;
   ticket: ITicketDoc;
@@ -10,7 +11,7 @@ export interface INewOrder {
 
 // describes properties on order document (getorder)
 export interface IOrderDoc extends mongoose.Document {
-  status: string;
+  status: OrderStatus;
   expiresAt: Date;
   userId: string;
   ticket: ITicketDoc;
