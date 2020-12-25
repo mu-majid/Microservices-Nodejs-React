@@ -1,13 +1,13 @@
 import mongoose from 'mongoose';
 
-// describe creating new user
+// describe creating new ticket
 export interface INewTicket {
   title: string;
   price: number;
   userId: string
 }
 
-// describes properties on user document (getUser)
+// describes properties on ticket document (getticket)
 export interface ITicketDoc extends mongoose.Document {
   title: string;
   price: number;
@@ -16,7 +16,7 @@ export interface ITicketDoc extends mongoose.Document {
   // updatedAt: string;
 }
 
-// describes properties on User model
+// describes properties on Ticket model
 export interface ITicketModelProps extends mongoose.Model<ITicketDoc> {
-  build(user: INewTicket): ITicketDoc;
+  build(ticket: INewTicket): ITicketDoc;
 }

@@ -30,14 +30,6 @@ const orderSchema = new mongoose.Schema({
   }
 });
 
-// orderSchema.pre('save', async function (done) {
-//   // only hash the passwrd if it was modified
-//   if (this.isModified('password')) {
-//     const hashed = await Password.toHash(this.get('password'));
-//     this.set('password', hashed);
-//   }
-//   done();
-// });
 
 orderSchema.statics.build = (order: INewOrder) => {
   return new Order(order);
