@@ -3,10 +3,10 @@ import 'express-async-errors';
 import { json } from 'body-parser';
 import cookieSession from 'cookie-session';
 import { errorHandler, NotFoundError, currentUser } from '@mmkgittix/common';
-import { createTicketsRouter } from './routes/new';
-import { showTicketRouter } from './routes/find-one';
-import { indexTicketRouter } from './routes/find-all';
-import { updateTicketRouter } from './routes/update';
+import { createOrderRouter } from './routes/new';
+import { findOrderRouter } from './routes/find-one';
+import { findAllOrdersRouter } from './routes/find-all';
+import { deleteOrderRouter } from './routes/delete';
 
 
 // cookie here is for transporting jwt
@@ -20,10 +20,10 @@ app.use(cookieSession({
 
 app.use(currentUser);
 
-app.use(createTicketsRouter);
-app.use(showTicketRouter);
-app.use(indexTicketRouter);
-app.use(updateTicketRouter);
+app.use(createOrderRouter);
+app.use(findOrderRouter);
+app.use(findAllOrdersRouter);
+app.use(deleteOrderRouter);
 
 
 
