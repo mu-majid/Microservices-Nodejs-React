@@ -174,8 +174,8 @@ This is a microservices application that uses `Async` communication between serv
 
     - So, numbering the transactions or events as they come and make the consumers aware of this numbering, solves the ordering of events problem we had previously.
 
-    ![sol1](./pics/sol1.png)
-    ![sol2](./pics/sol2.png)
+  ![sol1](./pics/sol1.png)
+  ![sol2](./pics/sol2.png)
   
 ## Event Re-Delivery:
 
