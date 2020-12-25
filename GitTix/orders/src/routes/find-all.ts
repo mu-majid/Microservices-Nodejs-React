@@ -17,4 +17,4 @@ router.get(
   }
 );
 
-export { router as findOrderRouter }
+export { router as findAllOrdersRouter }

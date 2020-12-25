@@ -4,8 +4,8 @@ import { json } from 'body-parser';
 import cookieSession from 'cookie-session';
 import { errorHandler, NotFoundError, currentUser } from '@mmkgittix/common';
 import { createOrderRouter } from './routes/new';
-import { findOrderRouter } from './routes/find-one';
 import { findAllOrdersRouter } from './routes/find-all';
+import { findOneOrdersRouter } from './routes/find-one';
 import { deleteOrderRouter } from './routes/delete';
 
 
@@ -21,7 +21,7 @@ app.use(cookieSession({
 app.use(currentUser);
 
 app.use(createOrderRouter);
-app.use(findOrderRouter);
+app.use(findOneOrdersRouter);
 app.use(findAllOrdersRouter);
 app.use(deleteOrderRouter);
 
