@@ -8,7 +8,7 @@
   
     - Create a ticket scenario: 
     
-    1. Create ticket object & event object in service DB [THIS SHOULD BE A DB TRANSACTION].
+    1. Create ticket object & event object in service DB (has collection for tickets and collection for events) [THIS SHOULD BE A DB TRANSACTION].
     2. Cronjob (watcher) polling the service's db for newly created events to publish them to NATS.
 
   - This eliminates data integrity issues that might arise if we created ticket object but failed to publish event for whatever reason. 
@@ -174,7 +174,8 @@ This is a microservices application that uses `Async` communication between serv
 
       - So, numbering the transactions or events as they come and make the consumers aware of this numbering, solves the ordering of events problem we had previously.
 
-      [[sol1 pic, and sol2 pic]]
+      ![sol1](./pics/sol1.png)
+      ![sol2](./pics/sol2.png)
   
 ## Event Re-Delivery:
 
