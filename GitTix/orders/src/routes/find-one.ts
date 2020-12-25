@@ -1,20 +1,24 @@
 import express, { Request, Response } from 'express';
 import { Order } from '../models/order';
-import { requireAuth } from '@mmkgittix/common';
+import { NotFoundError, NotAuthorizedError, requireAuth } from '@mmkgittix/common';
 
 const router = express.Router();
 
 router.get(
-  '/api/orders/:orderId',
+  '/api/orders',
   requireAuth,
   async (req: Request, res: Response) => {
+    const order = await Order.findById(req.params.orderId).populate('ticket');
 
-    const orders = await Order.find({
-      userId: req.currentUser!.id,
-    }).populate('ticket');
-  
-    return res.send(orders);
+    if (!order) {
+      throw new NotFoundError();
+    }
+    if (order.userId !== req.currentUser!.id) {
+      throw new NotAuthorizedError();
+    }
+
+    res.send(order);
   }
 );
 
-export { router as findOrderRouter }
+export { router as findAllOrdersRouter }
