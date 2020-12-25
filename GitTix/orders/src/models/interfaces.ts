@@ -38,8 +38,7 @@ export interface INewTicket {
 export interface ITicketDoc extends mongoose.Document {
   title: string;
   price: number;
-  // createdAt: string;
-  // updatedAt: string;
+  isReserved(): Promise<boolean>
 }
 
 // describes properties on Ticket model to make typescript able to validate our doc to be created

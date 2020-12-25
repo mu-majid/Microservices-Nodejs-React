@@ -7,6 +7,9 @@ import { Order } from '../models/order';
 
 const router = express.Router();
 
+// Should be env var || from db
+const EXPIRATION_WINDOW_SECONDS = 15 * 60;
+
 // we should not be validating it is mongo id, because it introduce coupling between services.(Assume tickets service is removed entirely and event are coming from other place)
 router.post(
   '/api/orders',
@@ -24,20 +27,33 @@ router.post(
 
     // Find Ticket to reserve.
     const foundTicket = await Ticket.findById(ticketId);
+
     if (!foundTicket) {
       throw new NotFoundError();
     }
 
     // Make sure ticket is not reserved
-    const isReserved = Order.findOne(
-      { ticket: foundTicket, status: { $in: [OrderStatus.CREATED, OrderStatus.COMPLETE, OrderStatus.AWAITING_PAYMENT] } }
-    );
+    const isReserved = await foundTicket.isReserved();
 
     if (isReserved) {
       throw new BadRequestError('Ticket is already reserved.');
     }
 
-    return res.send({});
+    // calculate order expiration time (15 mins)
+    const expiration = new Date();
+    expiration.setSeconds(expiration.getSeconds() + EXPIRATION_WINDOW_SECONDS);
+
+    // Build order doc
+    const order = Order.build({
+      expiresAt: expiration,
+      userId: req.currentUser!.id,
+      status: OrderStatus.CREATED,
+      ticket: foundTicket
+    });
+
+    await order.save();
+
+    return res.status(201).send(order);
   }
 );
 
