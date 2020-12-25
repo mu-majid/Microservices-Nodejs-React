@@ -36,3 +36,12 @@ build:
         manual:
           - src: 'src/**/*.ts'
             dest: .
+
+    - image: gcr.io/gittix-dev-293814/orders
+      context: orders
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: 'src/**/*.ts'
+            dest: .
