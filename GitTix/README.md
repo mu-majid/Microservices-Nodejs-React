@@ -1,6 +1,12 @@
 # GitTix (A Simple StubHub Clone): 
 
-## Enhancements:
+## Overview:
+
+  - This project is not meant to clone every aspect of stubhub.com, but rather implement some of the features like create tickets, and ordering them by applying a lock over ticket for a certain period of time before it gets available again if the order was cancelled, or the payment was not done in that period of time.
+
+  - The front end is built with `next.JS` and it does not clone the styles of stubhub.com, it is just a simple front end that allows interaction with the backend.
+
+## Future Enhancements:
 
   - Instead of publishing event from services to NATS streaming directly, We should save the event in the db instance connected to the service, and then we could have something like a watcher (cronjob) that checks new events (with flag notPublished) in the service db and publish them to NATS.
 
@@ -176,7 +182,7 @@ This is a microservices application that uses `Async` communication between serv
 
   ![sol1](./pics/sol1.png)
   ![sol2](./pics/sol2.png)
-  
+
   
 ## Event Re-Delivery:
 
