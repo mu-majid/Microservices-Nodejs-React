@@ -5,7 +5,7 @@ import { NotFoundError, NotAuthorizedError, requireAuth } from '@mmkgittix/commo
 const router = express.Router();
 
 router.get(
-  '/api/orders',
+  '/api/orders/:orderId',
   requireAuth,
   async (req: Request, res: Response) => {
     const order = await Order.findById(req.params.orderId).populate('ticket');

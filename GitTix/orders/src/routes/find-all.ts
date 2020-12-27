@@ -5,7 +5,7 @@ import { requireAuth } from '@mmkgittix/common';
 const router = express.Router();
 
 router.get(
-  '/api/orders/:orderId',
+  '/api/orders',
   requireAuth,
   async (req: Request, res: Response) => {
 
