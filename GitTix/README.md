@@ -177,6 +177,7 @@ This is a microservices application that uses `Async` communication between serv
   ![sol1](./pics/sol1.png)
   ![sol2](./pics/sol2.png)
   
+  
 ## Event Re-Delivery:
 
   - All events are saved by NATS in an event-history.
