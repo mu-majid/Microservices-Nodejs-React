@@ -24,7 +24,11 @@ const ticketSchema = new mongoose.Schema({
 });
 
 ticketSchema.statics.build = (ticket: INewTicket) => {
-  return new Ticket(ticket);
+  return new Ticket({
+    _id: ticket.id,
+    title: ticket.title,
+    price: ticket.price
+  });
 };
 
 // called like this: ticket.isReserved()

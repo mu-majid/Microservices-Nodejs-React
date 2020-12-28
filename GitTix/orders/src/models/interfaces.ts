@@ -30,6 +30,7 @@ export interface IOrderModelProps extends mongoose.Model<IOrderDoc> {
 
 // describe creating new ticket
 export interface INewTicket {
+  id: string;
   title: string;
   price: number;
 }
