@@ -11,7 +11,8 @@ export interface INewTicket {
 export interface ITicketDoc extends mongoose.Document {
   title: string;
   price: number;
-  userId: string
+  userId: string;
+  version: number;
   // createdAt: string;
   // updatedAt: string;
 }
