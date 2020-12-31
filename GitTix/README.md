@@ -206,3 +206,7 @@ This is a microservices application that uses `Async` communication between serv
     - JSON schema.
     - Protobuf.
     - Apache Avro
+
+## Optimistic Concurrency Control:
+
+  - We are going to use OOC to handle any concurrency issues that might rise due to the async communication between services that might cause event processed out of order.
