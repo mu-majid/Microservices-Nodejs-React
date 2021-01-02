@@ -212,3 +212,11 @@ This is a microservices application that uses `Async` communication between serv
   - We are going to use OOC to handle any concurrency issues that might rise due to the async communication between services that might cause event processed out of order.
 
   - When should we include version field of a record with a event? - Ans. Increment/Include a record version number when the **primary service responsible for the records** emits an event to describe a **create/update/destroy** operation.
+
+## Ticket Locking (reserving):
+
+  - Implemented by having `orderId` property on tickets docs in the `tickets-service`. So the presence of `orderId` on a ticket means, it is locked and can not be updated.
+
+  - It could also be implemented by having a route in the `orders-service`, that queries tickets associated with orders that have `awaiting-payments` status.
+
+  - Second option require adding extra route to orders-service, so i chose the first option cuz it alot easier.
