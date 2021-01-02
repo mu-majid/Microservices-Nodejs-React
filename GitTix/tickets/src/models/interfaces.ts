@@ -13,6 +13,7 @@ export interface ITicketDoc extends mongoose.Document {
   price: number;
   userId: string;
   version: number;
+  orderId?: string;
   // createdAt: string;
   // updatedAt: string;
 }
