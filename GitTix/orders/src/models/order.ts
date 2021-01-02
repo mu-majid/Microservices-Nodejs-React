@@ -1,6 +1,7 @@
 import mongoose from 'mongoose';
 import { INewOrder, IOrderDoc, IOrderModelProps } from './interfaces';
 import { OrderStatus } from '@mmkgittix/common';
+import { updateIfCurrentPlugin } from 'mongoose-update-if-current';
 
 const orderSchema = new mongoose.Schema({
   status: {
@@ -30,6 +31,8 @@ const orderSchema = new mongoose.Schema({
   }
 });
 
+orderSchema.set('versionKey', 'version');
+orderSchema.plugin(updateIfCurrentPlugin);
 
 orderSchema.statics.build = (order: INewOrder) => {
   return new Order(order);

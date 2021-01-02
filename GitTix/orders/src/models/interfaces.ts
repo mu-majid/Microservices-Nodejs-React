@@ -15,6 +15,7 @@ export interface IOrderDoc extends mongoose.Document {
   expiresAt: Date;
   userId: string;
   ticket: ITicketDoc;
+  version: number;
   // createdAt: string;
   // updatedAt: string;
 }
