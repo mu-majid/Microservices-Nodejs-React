@@ -2,6 +2,7 @@ import mongoose from 'mongoose';
 import { INewTicket, ITicketDoc, ITicketModelProps } from './interfaces';
 import { Order } from './order';
 import { OrderStatus } from '@mmkgittix/common';
+import { updateIfCurrentPlugin } from 'mongoose-update-if-current';
 
 const ticketSchema = new mongoose.Schema({
   title: {
@@ -22,6 +23,9 @@ const ticketSchema = new mongoose.Schema({
     }
   }
 });
+
+ticketSchema.set('versionKey', 'version');
+ticketSchema.plugin(updateIfCurrentPlugin);
 
 ticketSchema.statics.build = (ticket: INewTicket) => {
   return new Ticket({
