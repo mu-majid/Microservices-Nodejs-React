@@ -46,4 +46,5 @@ export interface ITicketDoc extends mongoose.Document {
 // describes properties on Ticket model to make typescript able to validate our doc to be created
 export interface ITicketModelProps extends mongoose.Model<ITicketDoc> {
   build(ticket: INewTicket): ITicketDoc;
+  findByEvent(event: {id: string, version: number}): Promise<ITicketDoc | null>;
 }
