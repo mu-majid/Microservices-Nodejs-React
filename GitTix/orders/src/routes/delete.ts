@@ -25,6 +25,7 @@ router.delete(
     await order.save();
 
     // publishing an event saying this was cancelled!
+    // fire and forget (no await on publish, so if error happened, user shoudl not would know)
     new OrderCancelledPublisher(natsWrapper.client).publish({
       id: order.id,
       version: order.version,
@@ -33,7 +34,7 @@ router.delete(
       }
     })
 
-    res.status(204).send(order);
+    return res.status(204).send(order);
   }
 );
 

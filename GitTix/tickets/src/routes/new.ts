@@ -25,6 +25,7 @@ router.post(
       userId: req.currentUser!.id
     });
     await ticket.save();
+    // awaiting, so that, if error occurred during publish, we throw it and user notified
     await new TicketCreatedPublisher(natsWrapper.client).publish({
       id: ticket.id,
       price: ticket.price,

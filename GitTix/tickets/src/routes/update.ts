@@ -38,6 +38,7 @@ router.put(
       price: req.body.price,
     });
     await ticket.save();
+    // awaiting, so that, if error occurred during publish, we throw it and user notified
     await new TicketUpdatedPublisher(natsWrapper.client).publish({
       id: ticket.id,
       price: ticket.price,

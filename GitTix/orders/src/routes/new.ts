@@ -56,6 +56,7 @@ router.post(
 
     await order.save();
 
+    // fire and forget (no await on publish, so if error happened, user shoudl not would know)
     new OrderCreatedPublisher(natsWrapper.client).publish({
       id: order.id,
       version: order.version,
