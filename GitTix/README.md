@@ -210,3 +210,5 @@ This is a microservices application that uses `Async` communication between serv
 ## Optimistic Concurrency Control:
 
   - We are going to use OOC to handle any concurrency issues that might rise due to the async communication between services that might cause event processed out of order.
+
+  - When should we include version field of a record with a event? - Ans. Increment/Include a record version number when the **primary service responsible for the records** emits an event to describe a **create/update/destroy** operation.
