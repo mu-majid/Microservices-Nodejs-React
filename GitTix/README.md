@@ -37,6 +37,8 @@ Of course a feature based design could be a better approach, but i am trying to 
   - Expiration Service (Hanlde locking on orders)
   - Payments Service (using `stripe`)
 
+  ![payFlow](./pics/payment-flow.png)
+
 This is a microservices application that uses `Async` communication between services, so it would be a great idea to list the events that we will work with through out the App.
 
 ## Events (Services use for Communication):
