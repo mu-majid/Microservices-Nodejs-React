@@ -79,6 +79,10 @@ This is a microservices application that uses `Async` communication between serv
     - Step5: check that cluster entry was added to local `kubectl` config by running `kubectl config view`
     - Step6: switch between different contexts using this command `kubectl config use-context CONTEXT_NAME`
 
+  ## Creating Secret inside k8s:
+
+    - We run this command `kubectl create secret generic SECRET_NAME --from-literal KEY=VALUE`
+
 ## Password hashing Reminder : 
   - When a user tries to signup, hash password and save it to db.
   - When a user tries to sign in, we retrieve hashed password from db and match it to password he provided. 
