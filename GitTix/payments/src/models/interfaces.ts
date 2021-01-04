@@ -23,4 +23,6 @@ export interface IOrderDoc extends mongoose.Document {
 // describes properties on Order model to make typescript able to validate our doc to be created
 export interface IOrderModelProps extends mongoose.Model<IOrderDoc> {
   build(order: INewOrder): IOrderDoc;
+  findByEvent(event: {id: string, version: number}): Promise<IOrderDoc | null>;
+
 }

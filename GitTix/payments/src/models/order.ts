@@ -30,6 +30,13 @@ const orderSchema = new mongoose.Schema({
 orderSchema.set('versionKey', 'version');
 orderSchema.plugin(updateIfCurrentPlugin);
 
+orderSchema.statics.findByEvent = (data: { id: string, version: number}) => {
+  return Order.findOne({
+    _id: data.id,
+    version: data.version - 1
+  });
+}
+
 orderSchema.statics.build = (order: INewOrder) => {
   // we have to spread attrs and not just call new Order(order), to ensure _id property is the same as order.id from orders service
   return new Order({
