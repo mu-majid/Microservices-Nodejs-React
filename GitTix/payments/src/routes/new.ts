@@ -1,5 +1,6 @@
 import express, { Request, Response } from 'express';
 import { body } from 'express-validator';
+import {stripe} from '../stripe';
 import {
   requireAuth,
   validateRequest,
@@ -31,6 +32,12 @@ router.post(
     if (order.status === OrderStatus.CANCELLED) {
       throw new BadRequestError('Cannot pay for an cancelled order');
     }
+
+    await stripe.charges.create({
+      currency: 'usd',
+      amount: order.price * 100,
+      source: token,
+    });
 
     res.send({ success: true });
   }
