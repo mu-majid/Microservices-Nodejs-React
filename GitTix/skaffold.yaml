@@ -54,3 +54,12 @@ build:
         manual:
           - src: 'src/**/*.ts'
             dest: .
+
+    - image: gcr.io/gittix-dev-293814/payments
+      context: payments
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: 'src/**/*.ts'
+            dest: .
