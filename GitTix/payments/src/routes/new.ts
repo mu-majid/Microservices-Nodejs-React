@@ -5,6 +5,8 @@ import {
   validateRequest,
   BadRequestError,
   NotFoundError,
+  NotAuthorizedError,
+  OrderStatus,
 } from '@mmkgittix/common';
 import { Order } from '../models/order';
 
@@ -26,7 +28,7 @@ router.post(
     if (order.userId !== req.currentUser!.id) {
       throw new NotAuthorizedError();
     }
-    if (order.status === OrderStatus.Cancelled) {
+    if (order.status === OrderStatus.CANCELLED) {
       throw new BadRequestError('Cannot pay for an cancelled order');
     }
 

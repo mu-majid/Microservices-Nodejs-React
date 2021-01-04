@@ -10,7 +10,7 @@ import { app } from '../app';
 declare global {
   namespace NodeJS {
     interface Global {
-      signin(): string[]; // arr related to supertest handling cookies in arr
+      signin(id?: string): string[]; // arr related to supertest handling cookies in arr
     }
   }
 }
@@ -46,9 +46,9 @@ afterAll(async () => {
   await mongoose.connection.close();
 });
 
-global.signin = () => {
+global.signin = (id?: string) => {
   // build a jwt payload { id, email }
-  const payload = { id: new mongoose.Types.ObjectId().toHexString(), email: 'test@test.com' }
+  const payload = { id: id || new mongoose.Types.ObjectId().toHexString(), email: 'test@test.com' }
 
   // create jwt
   const token = jwt.sign(payload, process.env.JWT_KEY!);
