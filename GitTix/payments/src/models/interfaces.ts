@@ -24,5 +24,18 @@ export interface IOrderDoc extends mongoose.Document {
 export interface IOrderModelProps extends mongoose.Model<IOrderDoc> {
   build(order: INewOrder): IOrderDoc;
   findByEvent(event: {id: string, version: number}): Promise<IOrderDoc | null>;
+}
 
+export interface PaymentAttrs {
+  orderId: string;
+  stripeId: string;
+}
+
+export interface PaymentDoc extends mongoose.Document {
+  orderId: string;
+  stripeId: string;
+}
+
+export interface PaymentModel extends mongoose.Model<PaymentDoc> {
+  build(attrs: PaymentAttrs): PaymentDoc;
 }
