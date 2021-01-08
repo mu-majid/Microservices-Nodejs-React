@@ -6,7 +6,7 @@ import { OrderCancelledListener } from './events/listeners/order-cancelled-liste
 
 const start  = async () => {
 
-  console.log('Tickets Service starting After some checks...')
+  console.log('Tickets Service starting ...')
 
 
   if (!process.env.JWT_KEY) {
