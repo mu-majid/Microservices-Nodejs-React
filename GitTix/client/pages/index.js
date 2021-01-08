@@ -1,3 +1,4 @@
+import Link from 'next/link';
 
 const LandingPage = ({ currentUser, tickets }) => {
   const ticketList = tickets.map(ticket => {
@@ -5,6 +6,12 @@ const LandingPage = ({ currentUser, tickets }) => {
       <tr key={ticket.id}>
         <td>{ticket.title}</td>
         <td>{ticket.price}</td>
+        <td>
+          {/* href here is the file path, and as is the actual url */}
+          <Link href="/tickets/[ticketId]" as={`/tickets/${ticket.id}`}>
+            <a className="nav-link">View</a>
+          </Link>
+        </td>
       </tr>
     );
   });
@@ -20,6 +27,7 @@ const LandingPage = ({ currentUser, tickets }) => {
           <tr>
             <th>Title</th>
             <th>Price</th>
+            <th>Link</th>
           </tr>
         </thead>
         <tbody>
