@@ -1,4 +1,4 @@
-name: tests
+name: tests-tickets
 
 on: 
   pull_request
@@ -8,5 +8,5 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - run: cd GitTix/auth && npm install && npm run test:ci
+      - run: cd GitTix/tickets && npm install && npm run test:ci
    
