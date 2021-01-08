@@ -1,0 +1,25 @@
+name: deploy-client
+
+on:
+  push:
+    branches: 
+      - master
+    paths: 
+      - 'GitTix/client/**'
+jobs:
+  build:
+    
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - run: cd GitTix/client && docker build -t mumajid/gittix-client .
+      - run: docker login -u $DOCKER_USERNAME -p $DOCKER_PASS
+        env:
+          DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+          DOCKER_PASS: ${{ secrets.DOCKER_PASS }}
+      - run: docker push mumajid/gittix-client
+      - uses: digitalocean/action-doctl@v2
+        with:
+          token: ${{ secrets.DIGITAL_OCEAN_ACCESS_TOKEN }}
+      - run: doctl kubernetes cluster kubeconfig save gittix-app
+      - run: kubectl rollout restart deployment client-depl
