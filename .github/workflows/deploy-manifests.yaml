@@ -16,4 +16,4 @@ jobs:
         with:
           token: ${{ secrets.DIGITAL_OCEAN_ACCESS_TOKEN }}
       - run: doctl kubernetes cluster kubeconfig save gittix-app
-      - run: kubectl apply -f GitTix/infra/k8s
+      - run: kubectl apply -f GitTix/infra/k8s && kubectl apply -f GitTix/infra/k8s-prod
