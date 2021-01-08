@@ -8,7 +8,13 @@
 
 ## Future Enhancements:
 
-  - Support https.
+  - Support https (cert-manager.io)
+
+  - Add in Email Support (send a user an email after they have paid for an order - new service should be created that integrate with  sendgrid .... ).
+
+  - Add in 'build' steps for our prod cluster (right now all services+client are running in dev mode, Add in additional Dockerfiles to each service prior to deployment).
+
+  - Create a staging cluster.
 
   - Instead of publishing event from services to NATS streaming directly, We should save the event in the db instance connected to the service, and then we could have something like a watcher (cronjob) that checks new events (with flag notPublished) in the service db and publish them to NATS.
 
