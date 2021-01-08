@@ -228,3 +228,24 @@ This is a microservices application that uses `Async` communication between serv
   - It could also be implemented by having a route in the `orders-service`, that queries tickets associated with orders that have `awaiting-payments` status.
 
   - Second option require adding extra route to orders-service, so i chose the first option cuz it alot easier.
+
+
+## Production Deployment Workflow:
+
+  - This picture summarize the workflow
+  ![prodwork](./pics/prod-depl-workflow.png)
+
+  Git Repositories approaches in Microservices Arch
+  ------
+
+  1. Mono Repository (**Appraoch used**)
+  ![monogit](./pics/monogit.png)
+
+  2. Repository-Per-Service Approach
+  ![pergit](./pics/per-service.png)
+
+  - Per service approach might seem the right one but we are not going to use it as having mutiple repos to maintain is a tedious job.
+
+  - We will use github actions to run our test cases when a pull request is created/updated to our master branch.
+
+
