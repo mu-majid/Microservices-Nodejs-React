@@ -8,7 +8,7 @@ metadata:
 
 spec: 
   rules:
-    - host: gittix.dev
+    - host: www.tickets-app-production.xyz
       http:
         paths: 
           - path: /api/payments/?(.*)
