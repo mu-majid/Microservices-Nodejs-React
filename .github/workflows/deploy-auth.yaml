@@ -1,0 +1,20 @@
+name: deploy-auth
+
+on:
+  push:
+    branches: 
+      - master
+    paths: 
+      - 'GitTix/auth/**'
+jobs:
+  build:
+    
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - run: cd GitTix/auth && docker build -t mumajid/gittix-auth .
+      - run: docker login -u $DOCKER_USERNAME -p $DOCKER_PASS
+        env:
+          DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+          DOCKER_PASS: ${{ secrets.DOCKER_PASS }}
+      - run: docker push mumajid/gittix-auth
