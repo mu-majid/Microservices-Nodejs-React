@@ -1,0 +1,25 @@
+name: deploy-payments
+
+on:
+  push:
+    branches: 
+      - master
+    paths: 
+      - 'GitTix/payments/**'
+jobs:
+  build:
+    
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - run: cd GitTix/payments && docker build -t mumajid/gittix-payments .
+      - run: docker login -u $DOCKER_USERNAME -p $DOCKER_PASS
+        env:
+          DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+          DOCKER_PASS: ${{ secrets.DOCKER_PASS }}
+      - run: docker push mumajid/gittix-payments
+      - uses: digitalocean/action-doctl@v2
+        with:
+          token: ${{ secrets.DIGITAL_OCEAN_ACCESS_TOKEN }}
+      - run: doctl kubernetes cluster kubeconfig save gittix-app
+      - run: kubectl rollout restart deployment payments-depl
