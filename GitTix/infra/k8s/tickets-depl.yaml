@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: tickets
-          image: gcr.io/gittix-dev-293814/tickets
+          image: mumajid/gittix-tickets
           env:
             - name: NATS_CLIENT_ID
               valueFrom: 

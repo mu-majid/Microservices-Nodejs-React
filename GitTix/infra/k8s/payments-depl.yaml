@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: payments
-          image: gcr.io/gittix-dev-293814/payments
+          image: mumajid/gittix-payments
           env:
             - name: NATS_CLIENT_ID
               valueFrom: 

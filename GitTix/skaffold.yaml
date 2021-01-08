@@ -7,12 +7,12 @@ deploy:
       - ./infra/k8s-dev/*
 
 build:
-  # local:
-  #   push: false
-  googleCloudBuild:
-    projectId: gittix-dev-293814
+  local:
+    push: false
+  # googleCloudBuild:
+  #   projectId: gittix-dev-293814
   artifacts:
-    - image: gcr.io/gittix-dev-293814/auth
+    - image: mumajid/gittix-auth
       context: auth
       docker:
         dockerfile: Dockerfile
@@ -21,7 +21,7 @@ build:
           - src: 'src/**/*.ts'
             dest: .
 
-    - image: gcr.io/gittix-dev-293814/client
+    - image: mumajid/gittix-client
       context: client
       docker:
         dockerfile: Dockerfile
@@ -30,7 +30,7 @@ build:
           - src: '**/*.js'
             dest: .
 
-    - image: gcr.io/gittix-dev-293814/tickets
+    - image: mumajid/gittix-tickets
       context: tickets
       docker:
         dockerfile: Dockerfile
@@ -39,7 +39,7 @@ build:
           - src: 'src/**/*.ts'
             dest: .
 
-    - image: gcr.io/gittix-dev-293814/orders
+    - image: mumajid/gittix-orders
       context: orders
       docker:
         dockerfile: Dockerfile
@@ -48,7 +48,7 @@ build:
           - src: 'src/**/*.ts'
             dest: .
 
-    - image: gcr.io/gittix-dev-293814/expiration
+    - image: mumajid/gittix-expiration
       context: expiration
       docker:
         dockerfile: Dockerfile
@@ -57,7 +57,7 @@ build:
           - src: 'src/**/*.ts'
             dest: .
 
-    - image: gcr.io/gittix-dev-293814/payments
+    - image: mumajid/gittix-payments
       context: payments
       docker:
         dockerfile: Dockerfile
