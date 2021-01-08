@@ -1,7 +1,9 @@
 name: tests-auth
 
 on: 
-  pull_request
+  pull_request:
+    paths:
+      - 'GitTix/auth/**'
     
 jobs:
   build:

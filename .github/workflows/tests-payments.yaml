@@ -1,7 +1,9 @@
 name: tests-payments
 
 on: 
-  pull_request
+  pull_request:
+    paths:
+      - 'GitTix/payments/**'
     
 jobs:
   build:
