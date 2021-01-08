@@ -3,7 +3,7 @@ import { app } from './app';
 
 const start  = async () => {
 
-  console.log('Auth service starting...')
+  console.log('Auth service starting ...')
   if (!process.env.JWT_KEY) {
     throw new Error('JWT_KEY env should be defined');
   }
