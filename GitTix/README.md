@@ -274,4 +274,4 @@ This is a microservices application that uses `Async` communication between serv
     7. configure our digital ocean cluster to have all the secrets our app needs like jwt-secret and stripe-secret (MAKE SURE kubectl is using the digital ocean cluster context)
     8. Configure/enable ingress-nginx for the digital-ocean cluster (`kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v0.43.0/deploy/static/provider/do/deploy.yaml`)
 
-    Important link : https://github.com/digitalocean/digitalocean-cloud-controller-manager/blob/master/docs/controllers/services/examples/README.md#accessing-pods-over-a-managed-load-balancer-from-inside-the-cluster
+    Important link (ingress with digital ocean) : https://github.com/digitalocean/digitalocean-cloud-controller-manager/blob/master/docs/controllers/services/examples/README.md#accessing-pods-over-a-managed-load-balancer-from-inside-the-cluster
