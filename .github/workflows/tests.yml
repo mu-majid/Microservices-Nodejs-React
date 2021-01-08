@@ -8,5 +8,5 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - run: cd Gittix/auth && npm install && npm run test:ci
+      - run: cd GitTix/auth && npm install && npm run test:ci
    
