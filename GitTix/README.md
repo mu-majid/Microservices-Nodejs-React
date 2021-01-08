@@ -248,4 +248,19 @@ This is a microservices application that uses `Async` communication between serv
 
   - We will use github actions to run our test cases when a pull request is created/updated to our master branch.
 
+  Digital Ocean Deployment
+  ------
 
+  - We have seen `gcp` previously, so I will use digital ocean for prod-deployment (actually it is a lot cheaper :D )
+
+  - Steps: 
+
+    1. install `doctl` tool.
+    2. from digital ocean panel, get an access token
+    3. run this commad in your terminal `doctl auth init` and paste your personal access token.
+    4. then connect doctl to our remote cluster by running `doctl kubernetes cluster kubeconfig save <cluster_name>`, and the kubectl context will be switched automatically.
+    4a. reminder: `kubectl config view` to list all contexts, then to connect to a cluster(context) run `kubectl config use-context <context_name>`.
+    
+  - Deployment Plan:
+
+  ![deplplan](./pics/github-action-depl.png)
