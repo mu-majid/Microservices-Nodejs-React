@@ -8,6 +8,8 @@
 
 ## Future Enhancements:
 
+  - Support https.
+
   - Instead of publishing event from services to NATS streaming directly, We should save the event in the db instance connected to the service, and then we could have something like a watcher (cronjob) that checks new events (with flag notPublished) in the service db and publish them to NATS.
 
   - For example:
@@ -271,4 +273,5 @@ This is a microservices application that uses `Async` communication between serv
     6. These action files are responsible for each flow per service as indicated in the above picture.
     7. configure our digital ocean cluster to have all the secrets our app needs like jwt-secret and stripe-secret (MAKE SURE kubectl is using the digital ocean cluster context)
     8. Configure/enable ingress-nginx for the digital-ocean cluster (`kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v0.43.0/deploy/static/provider/do/deploy.yaml`)
-    
+
+    Important link : https://github.com/digitalocean/digitalocean-cloud-controller-manager/blob/master/docs/controllers/services/examples/README.md#accessing-pods-over-a-managed-load-balancer-from-inside-the-cluster
