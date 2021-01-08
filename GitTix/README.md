@@ -264,3 +264,11 @@ This is a microservices application that uses `Async` communication between serv
   - Deployment Plan:
 
   ![deplplan](./pics/github-action-depl.png)
+
+  - Steps (again):
+
+    5. Using github workflows we will create a file for each service and a file for all our k8s manifests
+    6. These action files are responsible for each flow per service as indicated in the above picture.
+    7. configure our digital ocean cluster to have all the secrets our app needs like jwt-secret and stripe-secret (MAKE SURE kubectl is using the digital ocean cluster context)
+    8. Configure/enable ingress-nginx for the digital-ocean cluster (`kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v0.43.0/deploy/static/provider/do/deploy.yaml`)
+    
