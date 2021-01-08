@@ -4,7 +4,7 @@ export default ({ req }) => {
   // on server
   if (typeof window ==='undefined') {
     return Axios.create({
-      baseURL: 'http://ingress-nginx-controller.ingress-nginx.svc.cluster.local',
+      baseURL: 'http://www.tickets-app-production.xyz',
       headers: req.headers
     });
   } 
