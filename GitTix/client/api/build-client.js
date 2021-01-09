@@ -1,6 +1,6 @@
 import Axios from 'axios';
 
-export default ({ req }) => {
+const buidlClient = ({ req }) => {
   // on server
   if (typeof window ==='undefined') {
     return Axios.create({
@@ -15,3 +15,5 @@ export default ({ req }) => {
     });
   }
 }
+
+export default buidlClient;
