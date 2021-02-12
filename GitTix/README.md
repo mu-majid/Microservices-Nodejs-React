@@ -8,7 +8,7 @@
 
 ## Future Enhancements:
 
-  - Support https (cert-manager.io)
+  - Support https (cert-manager.io) - check [docker-k8s-lab](https://github.com/mu-majid/docker-k8s-lab) repository.
 
   - Add in Email Support (send a user an email after they have paid for an order - new service should be created that integrate with  sendgrid .... ).
 
