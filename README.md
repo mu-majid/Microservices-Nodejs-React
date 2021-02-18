@@ -1,6 +1,6 @@
 # Repo Overview
 
-
+- Notes collected are from the course and my own research.
 ## Projects : 
 
   There is a read me file inside each project with useful notes about implementation decisions made.
