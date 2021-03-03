@@ -9,6 +9,7 @@
 
  - **GitTix** : a clone to stubhub project, using `Next.JS`, `Node.JS`, `MongoDB`, `redis`, and `Nats` for communication between different services. And all these services are running in `kubernetes` cluster hosted on google cloud platform. 
 
+
 In this Repo, I will use a variety of technologies. 
 
 - On the frontend, we'll use `React` and `Next JS` to present content to users. Each service is created using `Node` and `Express`. 
