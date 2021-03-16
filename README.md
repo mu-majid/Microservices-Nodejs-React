@@ -3,7 +3,7 @@
 - Notes collected are from the course and my own research.
 ## Projects : 
 
-  There is a read me file inside each project with useful notes about implementation decisions made.
+  - There is a read me file inside each project with useful notes about implementation decisions made.
 
  - **blog** : Simple appliction only using `nodejs` and `k8s` without `db` just to demonstrate the idea behind microservices and how they communicate  in a `k8s` env.
 
