@@ -18,4 +18,4 @@ In this Repo, I will use a variety of technologies.
 
 - The entire app is deployed and runs in `Docker` containers executed in a `Kubernetes` cluster. 
 
-- Finally, almost all of the code in this course is written with `Typescript`.
+- Finally, almost all of the code written in `Typescript`.
