@@ -11,6 +11,8 @@
   - Support https (cert-manager.io) - check [docker-k8s-lab](https://github.com/mu-majid/docker-k8s-lab) repository.
 
   - Add in Email Support (send a user an email after they have paid for an order - new service should be created that integrate with  sendgrid .... ).
+    1. CreateAnother service that assemble emails from nats (payment will send events to nats).
+    2. Use mjml and also create another service (redis) to cache some templates there.
 
   - Add in 'build' steps for our prod cluster (right now all services+client are running in dev mode, Add in additional Dockerfiles to each service prior to deployment).
 
