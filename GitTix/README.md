@@ -169,27 +169,27 @@ This is a microservices application that uses `Async` communication between serv
 
   #### Common Questions: 
 
-    1. Are concurrency issues related only to Microservices Architecture? No. it occurs also in Monolith apps, but it's just more prominent in MicroServices Arch.
+  1. Are concurrency issues related only to Microservices Architecture? No. it occurs also in Monolith apps, but it's just more prominent in MicroServices Arch.
 
-    2. Why not run one instance of the listener server? Still the same issue (processing out of order) might occur, and we end up with a bottleneck in our application that we are not able to scale.
+  2. Why not run one instance of the listener server? Still the same issue (processing out of order) might occur, and we end up with a bottleneck in our application that we are not able to scale.
 
-    3. Could we share state between listener services (SRV-1 => cache/Queue <= SRV-2) and check events sequence number? This solution might seem good, but it strictly process events in sequence and this might be a penalty, if we for example have a multitenant system, tenant(B) is independent from tenant(A), and yet we are processing their events sequencially rather than concurrently, also this issue might occur on one-tenant level application, if we are updating two different records for example. [One Update At A Time]
+  3. Could we share state between listener services (SRV-1 => cache/Queue <= SRV-2) and check events sequence number? This solution might seem good, but it strictly process events in sequence and this might be a penalty, if we for example have a multitenant system, tenant(B) is independent from tenant(A), and yet we are processing their events sequencially rather than concurrently, also this issue might occur on one-tenant level application, if we are updating two different records for example. [One Update At A Time]
 
-    4. Building on the Idea above, Could we check last processed event by the event # and also the resourceId (or tenantId+resourceId) ? This solution is good (having pool of sequence queues based on resources, in other words, queue per resource that is updated by events) (Meaning, if events are updating 2 resources, we could have one queue for each resource). But we have an issue related to NATS, and that is, the repeated numbering of events is not allowed in the same channel, so we might end up creating many channels which introduces an overhead.
+  4. Building on the Idea above, Could we check last processed event by the event # and also the resourceId (or tenantId+resourceId) ? This solution is good (having pool of sequence queues based on resources, in other words, queue per resource that is updated by events) (Meaning, if events are updating 2 resources, we could have one queue for each resource). But we have an issue related to NATS, and that is, the repeated numbering of events is not allowed in the same channel, so we might end up creating many channels which introduces an overhead.
 
-    5. A possible solution might be built upon the previous idea, but now the publisher will save the event data.
-    The Steps are: VIDEO{285}
-      a. Pub send event to `NATS`.
-      
-      b. `NATS` send event `seqNum` back to `publisher`, and pub saves this event( `seqNum`, `payload`, `lastSeq` (not used yet) ).
-
-      c. `NATS` forward this event to a `listener`, then it gets processed, and in the database of the `listener`, we check the `lastSeq` attribute of the incoming event and see if it matches the `lastEventIDProcessed` for the resource, then process the event, and finally, we save the `seqNum` of the incoming event as `lastEventIDProcessed` for the resource being updated.
-
-      d. When another event is being published for the same resource (identified by event payload that might have resourceId) publisher checks its database for the last event for this resource, and assign this last event's `seqNum` to the new event's `lastSeq` attribute.
-
-      e. Steps a, b, c are repeated.
+  5. A possible solution might be built upon the previous idea, but now the publisher will save the event data.
+  The Steps are: VIDEO{311}
+   a. Pub send event to `NATS`.
     
-    NOTE: NATS really does not send he seqNum back, so this solution might work with other solution other than NATS. This could be solved by relying on numbering being from publisher itself.
+   b. `NATS` send event `seqNum` back to `publisher`, and pub saves this event( `seqNum`, `payload`, `lastSeq` (not used yet) ).
+
+   c. `NATS` forward this event to a `listener`, then it gets processed, and in the database of the `listener`, we check the `lastSeq` attribute of the incoming event and see if it matches the `lastEventIDProcessed` for the resource, then process the event, and finally, we save the `seqNum` of the incoming event as `lastEventIDProcessed` for the resource being updated.
+
+   d. When another event is being published for the same resource (identified by event payload that might have resourceId) publisher checks its database for the last event for this resource, and assign this last event's `seqNum` to the new event's `lastSeq` attribute.
+
+   e. Steps a, b, c are repeated.
+  
+  NOTE: NATS really does not send he seqNum back, so this solution might work with other solution other than NATS. This could be solved by relying on numbering being from publisher itself.
 
   #### A solution:
     - Re-design the services again - We did not mention anything about the publisher, and began to design based only on NATS.
