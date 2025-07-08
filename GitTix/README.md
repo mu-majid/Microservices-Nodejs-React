@@ -178,7 +178,9 @@ This is a microservices application that uses `Async` communication between serv
   4. Building on the Idea above, Could we check last processed event by the event # and also the resourceId (or tenantId+resourceId) ? This solution is good (having pool of sequence queues based on resources, in other words, queue per resource that is updated by events) (Meaning, if events are updating 2 resources, we could have one queue for each resource). But we have an issue related to NATS, and that is, the repeated numbering of events is not allowed in the same channel, so we might end up creating many channels which introduces an overhead.
 
   5. A possible solution might be built upon the previous idea, but now the publisher will save the event data.
+
   The Steps are: VIDEO{311}
+
    a. Pub send event to `NATS`.
     
    b. `NATS` send event `seqNum` back to `publisher`, and pub saves this event( `seqNum`, `payload`, `lastSeq` (not used yet) ).
